@@ -42,7 +42,15 @@ corr_matrix["Dyno_Torque"].sort_values(ascending=False)
 
 
 
-
+# save correlations to variable
+corr = dataset.corr()
+# we can create a mask to not show duplicate values
+mask = np.zeros_like(corr, dtype=np.bool)
+mask[np.triu_indices_from(mask)] = True
+# generate heatmap
+plt.figure(figsize= (12,12))
+sns.heatmap(corr, annot=True, center=0, mask=mask, cmap='gnuplot')
+plt.show()
 
 
 
